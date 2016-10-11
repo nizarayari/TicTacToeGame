@@ -1,0 +1,47 @@
+body {
+  text-align: center
+}
+
+.container {
+  margin: 100px auto;
+  display: inline-block;
+  border: 2px solid #29323c;
+}
+
+
+.cells{
+  background-color: #00aeef;
+  width: 80px;
+  height: 80px;
+  margin : 1px;
+  cursor: pointer;
+}
+
+.row div {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 80px
+}
+
+p {
+  display: block;
+  margin: 5px auto;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+  cursor: pointer;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: transparent;
+  color: #29323c;
+  border: 2px solid #29323c;
+}
+
+button:hover{
+  background-color: #29323c;
+  color: #fcfcfc;
+}
