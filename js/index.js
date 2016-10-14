@@ -14,6 +14,7 @@ $(document).ready(function(){
 
   // on user choice
   $('.cells').on('click',function(){
+    if($(this).text() !== '' ) { return; }
     $(this).text("X")
     // save cell location (x,y)
     const coord = $(this).attr('id')
