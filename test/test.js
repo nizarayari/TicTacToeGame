@@ -10,7 +10,7 @@ describe('TicTacToe checker method',() => {
                   [1,0,1],
                   [1,0,1]
     ]
-    expect(TicTacToe.init(board).isWinner()).to.equal(null)
+    expect(TicTacToe.init(board).getWinner()).to.equal(null)
   })
 
   it('should returns 1 if the computer wins',() => {
@@ -19,7 +19,7 @@ describe('TicTacToe checker method',() => {
                   ['E',0,'E'],
                   [1,0,'E']
     ]
-    expect(TicTacToe.init(board).isWinner()).to.equal(1)
+    expect(TicTacToe.init(board).getWinner()).to.equal(1)
   })
 
   it('should returns 0 if the user wins',() => {
@@ -28,7 +28,7 @@ describe('TicTacToe checker method',() => {
                   ['E',1,'E'],
                   [0,1,'E']
     ]
-    expect(TicTacToe.init(board).isWinner()).to.equal(-1)
+    expect(TicTacToe.init(board).getWinner()).to.equal(-1)
   })
 })
 

@@ -30,7 +30,7 @@ $(document).ready(() => {
     applyChoice(computerChoice)
 
     //check if there is a winner
-    endGame = TicTacToe.init(grid).isWinner()
+    endGame = TicTacToe.init(grid).getWinner()
     console.log(endGame,'endGame')
     if(endGame != null){
       if(endGame === 1) { $('#result').text('YOU JUST LOST THE GAME! - try it again ⬇') }

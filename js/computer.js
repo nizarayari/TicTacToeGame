@@ -5,7 +5,7 @@ const Computer = (() => {
   //Using miniMAx algorithm to determine the most efficient computer choice
   const miniMax = (grid, turn) => {
     let col,row
-    let winner = TicTacToe.init(grid).isWinner()
+    let winner = TicTacToe.init(grid).getWinner()
     // currTurn is applied to the grid using 0 for computer and 1 for user
     let currTurn = turn === true ? 'O' : 'X'
     if(winner !== null){

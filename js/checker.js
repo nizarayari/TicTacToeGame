@@ -5,14 +5,14 @@ const TicTacToe = (() => {
   let computerUtility = 0
 
   const init = function (data) {
+    state = data
     computerUtility = 0
     organizeData(data);
     return this;
   }
 
   const organizeData = (data) => {
-    state = data
-    rows = state;
+    rows = data;
     columns = [[],[],[]];
     diagonals = [[],[]];
 
@@ -48,7 +48,7 @@ const TicTacToe = (() => {
     return false;
   }
 
-  const isWinner = () => {
+  const getWinner = () => {
     if (lineHasWinner(rows) || lineHasWinner(columns) || lineHasWinner(diagonals)){
       return computerUtility
     } else {
@@ -67,7 +67,7 @@ const TicTacToe = (() => {
 
 return {
   init,
-  isWinner
+  getWinner
 }
 
 })();
