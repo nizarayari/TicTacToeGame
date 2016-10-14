@@ -2,10 +2,10 @@
 const TicTacToe = (() => {
   
   let rows, columns, diagonals, state
-  let winner = 0
-  //reorganize data
+  let computerUtility = 0
+
   const init = function (data) {
-    winner = 0
+    computerUtility = 0
     organizeData(data);
     return this;
   }
@@ -26,45 +26,41 @@ const TicTacToe = (() => {
   }
 
 
-  //check lines
-  const checkLines = (data) => {
-    const checker = data.map((line) => {
+  const lineHasWinner = (data) => {
+    const winnerState = data.map((line) => {
       if (line.join('') === "XXX") {
-        // user wins
-        winner = -1;
+        computerUtility = -1;
         return true;
       } else if (line.join('') === "OOO"){
-        // computer wins
-        winner = 1;
+        computerUtility = 1;
         return true; 
       } else {
         return false;
       }
     })
+    return checkLines(winnerState)
+  }
 
-    if(checker.includes(true)){
+  const checkLines = (state) => {
+    if(state.includes(true)){
       return true
     }
-
     return false;
-
   }
 
   const isWinner = () => {
-    // if there is a winner
-    if (checkLines(rows) || checkLines(columns) || checkLines(diagonals)){
-      return winner
+    if (lineHasWinner(rows) || lineHasWinner(columns) || lineHasWinner(diagonals)){
+      return computerUtility
     } else {
       state.forEach((line)=>{
         if(line.includes(null)){
-          //the game is not finish yet
-          winner = null;
+          computerUtility = null;
         }
 
       })
     }
     
-    return winner
+    return computerUtility
     
   } 
 
