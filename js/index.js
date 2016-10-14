@@ -10,7 +10,7 @@ let grid = [
               ]
 let endGame;
 
-$(document).ready(function(){
+$(document).ready(() => {
 
   // on user choice
   $('.cells').on('click',function(){
@@ -36,7 +36,7 @@ $(document).ready(function(){
   })
 
   //Start a new game
-  $('button').on('click',function(){
+  $('button').on('click',() => {
     newGame()
   })
 

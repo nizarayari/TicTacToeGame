@@ -44,7 +44,7 @@ const Computer = (() => {
 
 
 return {
-  miniMax: miniMax
+  miniMax
 }
 
 })();

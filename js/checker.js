@@ -70,8 +70,8 @@ const TicTacToe = (() => {
 
 
 return {
-  init:init,
-  isWinner:isWinner,
+  init,
+  isWinner
 }
 
 })();
