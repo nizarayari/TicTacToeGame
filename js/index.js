@@ -18,9 +18,9 @@ $(document).ready(() => {
     
     $(this).text(userMarker)
 
-    const squareLocation = $(this).attr('id')
-    let col = Number(squareLocation[1])
-    let row = Number(squareLocation[3])
+    const squareLocation = $(this).attr('data-location')
+    let col = Number(squareLocation[0])
+    let row = Number(squareLocation[1])
     grid[row][col] = userMarker
 
     let computerChoice = Computer.miniMax(grid,true)
@@ -43,7 +43,7 @@ $(document).ready(() => {
 
 const applyChoice = (choice) => {
   grid = choice[1]
-  $(`#x${choice[2]}y${choice[3]}`).text(computerMarker)
+  $(`.cells[data-location=${choice[2]}${choice[3]}]`).text(computerMarker)
 }
 
 const newGame = () => {
