@@ -2,44 +2,39 @@
 import TicTacToe from './checker'
 import Computer from './computer'
 
-//Initialize the empty grid
 let grid = [
                 [null,null,null],
                 [null,null,null],
                 [null,null,null]
               ]
-let endGame;
+let getGameState;
 let userMarker = 'X';
 let computerMarker = 'O'
 
 $(document).ready(() => {
 
-  // on user choice
   $('.cells').on('click',function(){
     if($(this).text() !== '' ) { return; }
     
     $(this).text(userMarker)
-    // save cell location (x,y)
-    const coord = $(this).attr('id')
-    let col = Number(coord[1])
-    let row = Number(coord[3])
+
+    const squareLocation = $(this).attr('id')
+    let col = Number(squareLocation[1])
+    let row = Number(squareLocation[3])
     grid[row][col] = userMarker
-    //computer choice
+
     let computerChoice = Computer.miniMax(grid,true)
-    console.log('computerChoice', computerChoice)
     applyChoice(computerChoice)
 
-    //check if there is a winner
-    endGame = TicTacToe.init(grid).getWinner()
-    console.log(endGame,'endGame')
-    if(endGame != null){
-      if(endGame === 1) { $('#result').text('YOU JUST LOST THE GAME! - try it again ⬇') }
-      if(endGame === -1) { $('#result').text('YOU WIN - BUT IT NEVER GOING TO HAPPEN ANYWAY :)') }
-      if(endGame === 0) { $('#result').text('DRAW! - try it again ⬇ ') }
+    getGameState = TicTacToe.init(grid).getWinner()
+
+    if(getGameState != null){
+      if(getGameState === 1) { $('#result').text('YOU JUST LOST THE GAME! - try it again ⬇') }
+      if(getGameState === -1) { $('#result').text('YOU WIN - BUT IT NEVER GOING TO HAPPEN ANYWAY :)') }
+      if(getGameState === 0) { $('#result').text('DRAW! - try it again ⬇ ') }
     }
   })
 
-  //Start a new game
   $('button').on('click',() => {
     newGame()
   })

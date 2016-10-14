@@ -62,14 +62,14 @@ describe('Computer choice method',() => {
   })
 
   it('Given different state of the board, should return an array of 4 items',() => {
-    //1st item = utility, 2nd item = nextstate, 3rd&4th items = computer choice location (x,y)
+
     boardTab.forEach((board) => {
       let computerChoice = Computer.miniMax(board,true)
       expect(computerChoice.length).to.equal(4);
-      expect(computerChoice[0]).to.be.a('number'); //utility
-      expect(computerChoice[1]).to.be.an('array'); //new board
-      expect(computerChoice[2]).to.be.a('number'); //x
-      expect(computerChoice[3]).to.be.a('number'); //y
+      expect(computerChoice[0]).to.be.a('number'); 
+      expect(computerChoice[1]).to.be.an('array'); 
+      expect(computerChoice[2]).to.be.a('number'); 
+      expect(computerChoice[3]).to.be.a('number'); 
     })
   })
 
