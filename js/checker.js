@@ -29,11 +29,11 @@ const TicTacToe = (() => {
   //check lines
   const checkLines = (data) => {
     const checker = data.map((line) => {
-      if (line.join('') === "111") {
+      if (line.join('') === "XXX") {
         // user wins
         winner = -1;
         return true;
-      } else if (line.join('') === "000"){
+      } else if (line.join('') === "OOO"){
         // computer wins
         winner = 1;
         return true; 
@@ -56,7 +56,7 @@ const TicTacToe = (() => {
       return winner
     } else {
       state.forEach((line)=>{
-        if(line.join('').includes('E')){
+        if(line.includes(null)){
           //the game is not finish yet
           winner = null;
         }

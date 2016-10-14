@@ -7,7 +7,7 @@ const Computer = (() => {
     let col,row
     let winner = TicTacToe.init(grid).isWinner()
     // currTurn is applied to the grid using 0 for computer and 1 for user
-    let currTurn = turn === true ? 0 : 1
+    let currTurn = turn === true ? 'O' : 'X'
     if(winner !== null){
       if (winner === 1){ return [winner,grid] } //computer wins
       if (winner === 0){ return [winner,grid] } //Equals
@@ -19,7 +19,7 @@ const Computer = (() => {
 
       grid.forEach((lines,i) => {
         lines.forEach((item,j) => {
-          if (grid[i][j] === 'E') {
+          if (grid[i][j] === null) {
               grid[i][j] = currTurn;
               let utility = miniMax(grid, !turn)[0];
               // computer maximize its utility
@@ -32,7 +32,7 @@ const Computer = (() => {
                   col = j 
                   row = i
               }
-              grid[i][j] = 'E';
+              grid[i][j] = null;
           }
         })
       })
