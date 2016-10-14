@@ -1,59 +1,29 @@
 "use strict";
-import TicTacToe from './checker'
-import Computer from './computer'
+import Players from './players'
 
 let grid = [
-                [null,null,null],
-                [null,null,null],
-                [null,null,null]
-              ]
-let getGameState;
-let userMarker = 'X';
-let computerMarker = 'O'
+            [null,null,null],
+            [null,null,null],
+            [null,null,null]
+           ]
 
 $(document).ready(() => {
-
   $('.cells').on('click',function(){
-    if($(this).text() !== '' ) { return; }
-    
+    if($(this).text() !== '' || $('#result').text() !== ''  ) { return; }
+    let userMarker = 'X';
     $(this).text(userMarker)
-
     const squareLocation = $(this).attr('data-location')
-    let col = Number(squareLocation[0])
-    let row = Number(squareLocation[1])
-    grid[row][col] = userMarker
-
-    let computerChoice = Computer.miniMax(grid,true)
-    applyChoice(computerChoice)
-
-    getGameState = TicTacToe.init(grid).getWinner()
-
-    if(getGameState != null){
-      if(getGameState === 1) { $('#result').text('YOU JUST LOST THE GAME! - try it again ⬇') }
-      if(getGameState === -1) { $('#result').text('YOU WIN - BUT IT NEVER GOING TO HAPPEN ANYWAY :)') }
-      if(getGameState === 0) { $('#result').text('DRAW! - try it again ⬇ ') }
-    }
+    grid = Players.userChoice(grid, squareLocation, userMarker)
+    grid = Players.computerChoice(grid)
+    Players.checkGameState(grid)
   })
 
-  $('button').on('click',() => {
-    newGame()
+  $('#restart').on('click',() => {
+    grid = Players.newGame(grid)
   })
 
 })
 
-const applyChoice = (choice) => {
-  grid = choice[1]
-  $(`.cells[data-location=${choice[2]}${choice[3]}]`).text(computerMarker)
-}
 
-const newGame = () => {
-grid = [
-        [null,null,null],
-        [null,null,null],
-        [null,null,null]
-       ]
-  $('.cells').text('')
-  $('#result').text('')
-}
 
 
