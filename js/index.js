@@ -7,23 +7,26 @@ let grid = [
             [null,null,null]
            ]
 
-$(document).ready(() => {
-  $('.cells').on('click',function(){
-    if($(this).text() !== '' || $('#result').text() !== ''  ) { return; }
-    let userMarker = 'X';
-    $(this).text(userMarker)
-    const squareLocation = $(this).attr('data-location')
-    grid = Players.userChoice(grid, squareLocation, userMarker)
-    grid = Players.computerChoice(grid)
-    Players.checkGameState(grid)
-  })
+const board = document.querySelectorAll('.cells')
 
-  $('#restart').on('click',() => {
-    grid = Players.newGame(grid)
-  })
+board.forEach(function(cell){
+  cell.addEventListener('click',function(){
+    if(this.innerHTML !== '' || document.querySelector('#result').innerHTML !== '') { return; }
+    let userMarker = 'X'
+    this.innerHTML = userMarker
+    const squareLocation = this.getAttribute('data-location')
+    
+    setTimeout(() => {
+      grid = Players.userChoice(grid, squareLocation, userMarker)
+      grid = Players.computerChoice(grid)
+      Players.checkGameState(grid)
+    }, 90);
 
+  })
 })
 
-
+document.querySelector('#restart').addEventListener('click',function(){
+  grid = Players.newGame(grid)
+})
 
 

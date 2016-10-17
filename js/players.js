@@ -9,8 +9,12 @@ const newGame = (grid) => {
           [null,null,null],
           [null,null,null]
          ]
-  $('.cells').text('')
-  $('#result').text('')
+
+  let board = document.querySelectorAll('.cells')
+  board.forEach((cell) => {
+    cell.innerHTML = ''
+  })
+  document.querySelector('#result').innerHTML = ''
 
   return grid
 }
@@ -18,9 +22,9 @@ const newGame = (grid) => {
 const checkGameState = (grid) => {
   let getGameState = TicTacToe.init(grid).getWinner()
   if(getGameState != null){
-    if(getGameState === 1) { $('#result').text('YOU JUST LOST THE GAME! - try it again ⬇') }
-    if(getGameState === -1) { $('#result').text('YOU WIN - BUT IT NEVER GOING TO HAPPEN ANYWAY :)') }
-    if(getGameState === 0) { $('#result').text('DRAW! - try it again ⬇ ') }
+    if(getGameState === 1) { document.querySelector('#result').innerHTML = 'YOU JUST LOST THE GAME! - try it again ⬇' }
+    if(getGameState === -1) { document.querySelector('#result').innerHTML = 'YOU WIN - BUT IT NEVER GOING TO HAPPEN ANYWAY :)' }
+    if(getGameState === 0) { document.querySelector('#result').innerHTML = 'DRAW! - try it again ⬇ ' }
   }
 }
 
@@ -32,7 +36,9 @@ const computerChoice = (grid) => {
 const applyChoice = (choice) => {
   let board = choice[1]
   let computerMarker = 'O'
-  $(`.cells[data-location=${choice[2]}${choice[3]}]`).text(computerMarker)
+  if (choice[2] !== undefined){
+  document.querySelector("div[data-location="+"\""+choice[2]+choice[3]+"\""+"]").innerHTML = 'O'
+  }
   return board
 }
 
