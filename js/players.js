@@ -21,6 +21,7 @@ const newGame = (grid) => {
 
 const checkGameState = (grid) => {
   let getGameState = TicTacToe.init(grid).getWinner()
+
   if(getGameState != null){
     if(getGameState === 1) { document.querySelector('#result').innerHTML = 'YOU JUST LOST THE GAME! - try it again ⬇' }
     if(getGameState === -1) { document.querySelector('#result').innerHTML = 'YOU WIN - BUT IT NEVER GOING TO HAPPEN ANYWAY :)' }

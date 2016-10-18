@@ -1,7 +1,7 @@
 
 const TicTacToe = (() => {
   
-  let rows, columns, diagonals, state
+  let rows, columns, diagonals, state, allLines
   let computerUtility = 0
 
   const init = function (data) {
@@ -22,47 +22,39 @@ const TicTacToe = (() => {
         if (i === 2) { diagonals[i-1][j] = data[j][i-j] } 
       }
     }
+    allLines = [rows, columns, diagonals]
   }
-
 
   const lineHasWinner = (data) => {
-    const winnerState = data.map((line) => {
-      if (line.join('') === "XXX") {
+    let computerMarker = 'O';
+    let userMarker = 'X';
+
+    data.forEach((line) => {
+      if(line.filter((cell) => {return cell === userMarker }).length === 3){
         computerUtility = -1;
-        return true;
-      } else if (line.join('') === "OOO"){
+      }
+      if(line.filter((cell) => {return cell === computerMarker }).length === 3){
         computerUtility = 1;
-        return true; 
-      } else {
-        return false;
       }
     })
-    return checkLines(winnerState)
-  }
-
-  const checkLines = (state) => {
-    if(state.includes(true)){
-      return true
-    }
-    return false;
   }
 
   const getWinner = () => {
-    if (lineHasWinner(rows) || lineHasWinner(columns) || lineHasWinner(diagonals)){
+    allLines.forEach(lines => { lineHasWinner(lines) })
+
+    if(computerUtility === 1 || computerUtility === -1) {
       return computerUtility
     } else {
       state.forEach((line)=>{
         if(line.includes(null)){
           computerUtility = null;
         }
-
       })
     }
-    
-    return computerUtility
-    
-  } 
 
+    return computerUtility;
+
+  }
 
 return {
   init,
